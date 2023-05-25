@@ -9,13 +9,12 @@ const ProductsCard = ({ popularItems }) => {
         className="md:w-28 w-20 h-20 object-cover"
         style={{ borderRadius: "0px 200px 200px 200px" }}
         src={image}
-        
       />
       <div>
         <p className="uppercase mb-2">{name}</p>
         <p className="w-full">{recipe}</p>
       </div>
-        <p className="text-end text-[#D99904]">${price}</p>
+      <p className="text-end text-[#D99904]">${price}</p>
     </div>
   );
 };

@@ -4,6 +4,7 @@ import Banner from "./HomeComponents/Banner/Banner";
 import CategoryCarosel from "./HomeComponents/CategoryCarosel/CategoryCarosel";
 import About from "./HomeComponents/About/About";
 import ProductsMenu from "./HomeComponents/ProductsMenu/ProductsMenu";
+import CallToAction from "./HomeComponents/CallToAction/CallToAction";
 
 const Home = () => {
   return (
@@ -12,6 +13,7 @@ const Home = () => {
         <CategoryCarosel></CategoryCarosel>
         <About></About>
         <ProductsMenu></ProductsMenu>
+        <CallToAction></CallToAction>
     </div>
   );
 };

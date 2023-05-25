@@ -31,7 +31,11 @@ const ProductsMenu = () => {
             popularItems={popularItems}
           ></ProductsCard>
         ))}
+
       </div>
+        <div className="text-center mb-10">
+		<button className="btn btn-outline border-0 border-b-4 text-center">View Full Menu</button>
+		</div>
     </section>
   );
 };
