@@ -1,0 +1,8 @@
+.bg-image{
+	background-image: url('../../../../../public/Assets/home/chef-service.jpg');
+	background-size: cover;
+	object-fit: cover;
+	background-color: black;
+	opacity: 1.2;
+	
+}
