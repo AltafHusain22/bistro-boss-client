@@ -8,6 +8,7 @@ import CallToAction from "./HomeComponents/CallToAction/CallToAction";
 import ChefRecommend from "./HomeComponents/ChefRecommend/ChefRecommend";
 import { Helmet } from "react-helmet-async";
 import FromOurMenu from "./HomeComponents/FromOurMenu/FromOurMenu";
+import Testimonials from "./HomeComponents/Testimonials/Testimonials";
 
 const Home = () => {
   return (
@@ -22,6 +23,7 @@ const Home = () => {
       <CallToAction></CallToAction>
       <ChefRecommend></ChefRecommend>
       <FromOurMenu></FromOurMenu>
+      <Testimonials></Testimonials>
     </div>
   );
 };
