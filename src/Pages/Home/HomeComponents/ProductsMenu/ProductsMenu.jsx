@@ -1,7 +1,7 @@
 /* eslint-disable no-unused-vars */
 import { useEffect, useState } from "react";
 import HeadingTitle from "../../../../components/shared/HeadingTitle/HeadingTitle";
-import ProductsCard from "../../../../components/shared/ProductsCard/ProductsCard";
+import ProductsMenuCard from "../../../../components/shared/ProductsMenuCard/ProductsMenuCard";
 
 const ProductsMenu = () => {
   const [productsMenues, setProductsMenues] = useState([]);
@@ -26,16 +26,17 @@ const ProductsMenu = () => {
 
       <div className="grid md:grid-cols-2 gap-5 my-10 mx-5">
         {productsMenues.map((popularItems) => (
-          <ProductsCard
+          <ProductsMenuCard
             key={popularItems._id}
             popularItems={popularItems}
-          ></ProductsCard>
+          ></ProductsMenuCard>
         ))}
-
       </div>
-        <div className="text-center mb-10">
-		<button className="btn btn-outline border-0 border-b-4 text-center">View Full Menu</button>
-		</div>
+      <div className="text-center mb-10">
+        <button className="btn btn-outline border-0 border-b-4 text-center">
+          View Full Menu
+        </button>
+      </div>
     </section>
   );
 };

@@ -1,7 +1,7 @@
 /* eslint-disable no-unused-vars */
 /* eslint-disable react/prop-types */
 
-const ProductsCard = ({ popularItems }) => {
+const ProductsMenuCard = ({ popularItems }) => {
   const { _id, name, recipe, image, price } = popularItems;
   return (
     <div className="flex gap-10 mb-5 md:mr-20 ">
@@ -19,4 +19,4 @@ const ProductsCard = ({ popularItems }) => {
   );
 };
 
-export default ProductsCard;
+export default ProductsMenuCard;
