@@ -1,4 +1,5 @@
 /* eslint-disable no-unused-vars */
+import { Link } from "react-router-dom";
 import bgImg from "../../../../../public/Assets/home/featured.jpg";
 import bgImg1 from "../../../../../public/Assets/home/featured.jpg";
 import HeadingTitle from "../../../../components/shared/HeadingTitle/HeadingTitle";
@@ -25,12 +26,16 @@ const FromOurMenu = () => {
             Lorem ipsum dolor sit amet consectetur adipisicing elit. Error
             voluptate facere, deserunt dolores maiores quod nobis quas quasi.
             Eaque repellat recusandae ad laudantium tempore consequatur
-            consequuntur omnis ullam maxime tenetur.
+            consequuntur omnis ullam maxime tenetu.
           </p>
           <div className=" mt-10">
-            <button className="btn btn-outline border-0 border-b-4 border-white text-center text-white">
-              View Full Menu
-            </button>
+            
+          <Link to={'/order'}>
+          <button className="btn btn-outline border-0 border-b-4 text-center">
+            View Full Menu
+          </button>
+        </Link>
+           
           </div>
         </div>
       </div>

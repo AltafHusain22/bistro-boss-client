@@ -3,10 +3,11 @@ import { useEffect, useState } from "react";
 import HeadingTitle from "../../../../components/shared/HeadingTitle/HeadingTitle";
 import ProductsMenuCard from "../../../../components/shared/ProductsMenuCard/ProductsMenuCard";
 import useMenu from "../../../../hooks/useMenu";
+import { Link } from "react-router-dom";
 
 const ProductsMenu = () => {
-  const [menues] = useMenu(); //---- must be load in array --- 
-  const popularMenu = menues.filter( menu => menu.category === "popular");
+  const [menues] = useMenu(); //---- must be load in array ---
+  const popularMenu = menues.filter((menu) => menu.category === "popular");
 
   return (
     <section>
@@ -19,9 +20,11 @@ const ProductsMenu = () => {
         ))}
       </div>
       <div className="text-center mb-10">
-        <button className="btn btn-outline border-0 border-b-4 text-center">
-          View Full Menu
-        </button>
+        <Link to={'/order'}>
+          <button className="btn btn-outline border-0 border-b-4 text-center">
+            View Full Menu
+          </button>
+        </Link>
       </div>
     </section>
   );

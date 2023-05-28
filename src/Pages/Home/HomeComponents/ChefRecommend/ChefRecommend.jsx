@@ -24,7 +24,7 @@ const ChefRecommend = () => {
       ></HeadingTitle>
 
       <div className="grid md:grid-cols-3 gap-10 mb-10">
-        {cardItems.map((products) => (
+        {cardItems.map((products) => ( 
           <ChefRecommendCard key={products._id} prducts={products}></ChefRecommendCard>
         ))}
       </div>
