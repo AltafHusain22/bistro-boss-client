@@ -43,7 +43,7 @@ const Testimonials = () => {
                   <div className="flex justify-center mb-10 text-5xl font-bold">
                     <FaQuoteLeft></FaQuoteLeft>
                   </div>
-                  <p className="md:px-20">{review.details}</p>
+                  <p className="md:px-20 text-center">{review.details}</p>
                   <p className="text-center mt-10 text-3xl font-bold text-[#CD9003]">
                     {review.name}
                   </p>

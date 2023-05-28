@@ -2,30 +2,16 @@
 import { useEffect, useState } from "react";
 import HeadingTitle from "../../../../components/shared/HeadingTitle/HeadingTitle";
 import ProductsMenuCard from "../../../../components/shared/ProductsMenuCard/ProductsMenuCard";
+import useMenu from "../../../../hooks/useMenu";
 
 const ProductsMenu = () => {
-  const [productsMenues, setProductsMenues] = useState([]);
-
-  useEffect(() => {
-    fetch("productsMenu.json")
-      .then((res) => res.json())
-      .then((data) => {
-        const filteredProducts = data.filter(
-          (product) => product.category === "popular"
-        );
-        setProductsMenues(filteredProducts);
-      });
-  }, []);
+  const [menues] = useMenu(); //---- must be load in array --- 
+  const popularMenu = menues.filter( menu => menu.category === "popular");
 
   return (
     <section>
-      <HeadingTitle
-        subHeading="Check it out"
-        mainHeading="FROM OUR MENU"
-      ></HeadingTitle>
-
       <div className="grid md:grid-cols-2 gap-5 my-10 mx-5">
-        {productsMenues.map((popularItems) => (
+        {popularMenu.map((popularItems) => (
           <ProductsMenuCard
             key={popularItems._id}
             popularItems={popularItems}

@@ -1,3 +1,4 @@
+import HeadingTitle from "../../../../components/shared/HeadingTitle/HeadingTitle";
 import "./About.css";
 
 const About = () => {
@@ -11,6 +12,11 @@ const About = () => {
           </div>
         </div>
       </div>
+         <HeadingTitle
+        subHeading="Check it out"
+        mainHeading="FROM OUR MENU"
+      ></HeadingTitle>
+
     </section>
   );
 };
