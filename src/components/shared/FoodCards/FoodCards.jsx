@@ -8,6 +8,7 @@ const FoodCards = ({item}) => {
       <figure>
         <img className="w-full" src={image} />
       </figure>
+      <p className="bg-black px-5 py-2 absolute text-white right-0 mr-5 mt-5">${price}</p>
       <div className="card-body text-center">
         <h2 className="font-bold text-center text-2xl">{name}</h2>
         <p>{recipe}</p>
