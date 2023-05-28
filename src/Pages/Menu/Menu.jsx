@@ -1,7 +1,7 @@
 /* eslint-disable no-unused-vars */
 import { Helmet } from "react-helmet-async";
 import Cover from "../../components/shared/cover/Cover";
-import img1 from "../../../public/Assets/menu/banner3.jpg";
+import img from "../../../public/Assets/menu/banner3.jpg";
 import soupImg from "../../../public/Assets/menu/soup-bg.jpg";
 import HeadingTitle from "../../components/shared/HeadingTitle/HeadingTitle";
 import useMenu from "../../hooks/useMenu";
@@ -24,7 +24,7 @@ const Menu = () => {
       </Helmet>
       <div className="mb-20">
         <Cover
-          img1={img1}
+          img={img}
           mainHeading="OUR MENU"
           subText="Would you like to try a dish?"
         ></Cover>
@@ -55,8 +55,8 @@ const Menu = () => {
       {/* soups */}
       <div className="mb-20">
         <Cover
-          img1={soupImgj}
-          mainHeading="OUR MENU"
+          img={soupImg}
+          mainHeading="Soup"
           subText="Would you like to try a dish?"
         ></Cover>
       </div>
