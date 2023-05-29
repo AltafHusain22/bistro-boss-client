@@ -1,6 +1,7 @@
 /* eslint-disable no-const-assign */
 /* eslint-disable no-unused-vars */
 /* eslint-disable react/no-unknown-property */
+import registerImg from "../../../public/Assets/others/authentication.gif";
 import "./Register.css";
 import { Link } from "react-router-dom";
 import Swal from "sweetalert2";
@@ -12,29 +13,71 @@ import { BiFingerprint } from "react-icons/bi";
 import { MdAlternateEmail } from "react-icons/md";
 import { BsCheck } from "react-icons/bs";
 import { AiOutlineUserAdd } from "react-icons/ai";
+import { useContext } from "react";
+import { AuthContext } from "../../context/AuthProvider";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 const Register = () => {
+  const { createUser } = useContext(AuthContext);
+
   // handlegoogle signUp
   const handleGoogleSignUp = () => {};
 
+  // handle user register
   const handleRegister = (event) => {
     event.preventDefault();
     const form = event.target;
+    const name = form.name.value;
     const email = form.email.value;
     const password = form.password.value;
+
+    // form validation
+
+    if (name === "" || email === "" || password === "") {
+      toast("Field Must Not Be Empty!");
+      return;
+    } else if (password.length < 6) {
+      toast("Password Mustbe 6 char!");
+      return;
+    } else if (/^(?=.*\d)$/.test(password)) {
+      toast("password should contain at least 1 digit!");
+      return;
+    } else if (/^(?=(.*\W){1})$/.test(password)) {
+      toast("should contain at least 1 special characters ! ");
+      return;
+    } else if (/^(?=.*[a-zA-Z])$/.test(password)) {
+      toast("should contain at least 1 alphabetic character! ");
+      return;
+    } else if (/^ (?!.*\s) $/.test(password)) {
+      toast("should not contain any blank space! ");
+      return;
+    } else {
+      createUser(email, password)
+        .then((userCredential) => {
+          const user = userCredential.user;
+          Swal.fire("Good job!", "User Created Successfully!", "success");
+          form.reset();
+        })
+        .catch((error) => {
+          const errorCode = error.code;
+          const errorMessage = error.message;
+        });
+    }
   };
 
   return (
     <section className="bg-white  mt-20">
+      <ToastContainer />
       <div className="grid grid-cols-1 lg:grid-cols-2">
         <div className="relative flex items-end px-4 pb-10 pt-60 sm:pb-16 md:justify-center lg:pb-24 bg-gray-50 sm:px-6 lg:px-8">
           <div className="absolute inset-0">
             <img
               className="object-cover object-top w-full h-full rounded-xl"
-              src="https://cdn.rareblocks.xyz/collection/celebration/images/signin/4/girl-thinking.jpg"
+              src={registerImg}
             />
           </div>
-          <div className="absolute inset-0 bg-gradient-to-t from-black to-transparent"></div>
+          <div className="absolute inset-0 bg-gradient-to-t from-blue-900 to-transparent"></div>
 
           <div className="relative">
             <div className="w-full max-w-xl xl:w-full xl:mx-auto xl:pr-24 xl:max-w-xl">
@@ -99,10 +142,10 @@ const Register = () => {
 
             <form onSubmit={handleRegister} className="mt-8">
               <div className="space-y-5">
-				{/* name field */}
+                {/* name field */}
                 <div>
                   <label className="text-base font-medium text-gray-900">
-                    First & Last Name 
+                    First & Last Name
                   </label>
                   <div className="mt-2.5 relative text-gray-400 focus-within:text-gray-600">
                     <div className="email-field-wrap">
@@ -116,7 +159,7 @@ const Register = () => {
                     />
                   </div>
                 </div>
-				{/* email field */}
+                {/* email field */}
                 <div>
                   <label className="text-base font-medium text-gray-900">
                     Email address
