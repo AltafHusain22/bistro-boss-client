@@ -2,7 +2,7 @@
 /* eslint-disable no-unused-vars */
 /* eslint-disable react/no-unknown-property */
 import "./Login.css";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import Swal from "sweetalert2";
 import "sweetalert2/dist/sweetalert2.min.css";
 import {
@@ -16,43 +16,65 @@ import { FcGoogle } from "react-icons/fc";
 import { BiFingerprint } from "react-icons/bi";
 import { MdAlternateEmail } from "react-icons/md";
 import { BsCheck } from "react-icons/bs";
+import { useContext } from "react";
+import { AuthContext } from "../../context/AuthProvider";
+import { ToastContainer, toast } from "react-toastify";
 
 const Login = () => {
-
-  const [disabled , setDisabled] = useState(true)
+  const [disabled, setDisabled] = useState(true);
+  const { loginUser, user } = useContext(AuthContext);
+  const navigate = useNavigate()
 
   // handle captcha
   useEffect(() => {
     loadCaptchaEnginge(6);
   }, []);
-  
-  const ref = useRef()
-  const handleValidateCaptcha =()=>{
-      let user_captcha_value = ref.current.value 
-      if(validateCaptcha(user_captcha_value)){
-        setDisabled(false)
-        
-      }else{
-       
-        Swal.fire({
-          icon: 'error',
-          title: 'Oops...',
-          text: "Captcha Doesn't Matched!",
-        })
-          
-      }
-      
-  }
+
+  const ref = useRef();
+  const handleValidateCaptcha = () => {
+    let user_captcha_value = ref.current.value;
+    if (validateCaptcha(user_captcha_value)) {
+      setDisabled(false);
+    } else {
+      Swal.fire({
+        icon: "error",
+        title: "Oops...",
+        text: "Captcha Doesn't Matched!",
+      });
+    }
+  };
 
   // handlegoogle signUp
   const handleGoogleSignUp = () => {};
 
   const handleLogin = (event) => {
+   
     event.preventDefault();
     const form = event.target;
     const email = form.email.value;
     const password = form.password.value;
-    
+   
+    if (email === "" || password === "") {
+      toast("Field Must Not Be Empty!");
+      return;
+    } else if (user?.email !== email) {
+      toast("Please provide a valid email address and password !");
+      return;
+    } else {
+      loginUser(email, password)
+        .then((userCredential) => {
+          const user = userCredential.user;
+          console.log(user)
+          Swal.fire("Good job!", "LogIn Successfully!", "success");
+          form.reset()
+          navigate('/')
+          
+        })
+        .catch((error) => {
+          const errorCode = error.code;
+          const errorMessage = error.message;
+        });
+    }
   };
 
   return (
@@ -114,7 +136,7 @@ const Login = () => {
         <div className="flex items-center justify-center px-4 py-10 bg-white sm:px-6 lg:px-8 sm:py-16 lg:py-24">
           <div className="xl:w-full xl:max-w-sm 2xl:max-w-md xl:mx-auto">
             {/* {error} */}
-            {/* <ToastContainer /> */}
+            <ToastContainer/>
             <h2 className="text-3xl font-bold leading-tight text-black sm:text-4xl">
               Sign in to Celebration
             </h2>
@@ -128,7 +150,7 @@ const Login = () => {
               </Link>
             </p>
 
-            <form onSubmit={handleLogin} className="mt-8">
+            <form method="post" onSubmit={handleLogin} className="mt-8">
               <div className="space-y-5">
                 <div>
                   <label className="text-base font-medium text-gray-900">
@@ -179,6 +201,7 @@ const Login = () => {
                   </div>
                   <div className="captcha-wrap">
                     <input
+                      onBlur={handleValidateCaptcha}
                       ref={ref}
                       type="text"
                       name="captcha"
@@ -186,9 +209,6 @@ const Login = () => {
                       className="captcha-input-field"
                     />
                   </div>
-                  <button onClick={handleValidateCaptcha} className=" mt-5 w-full btn btn-outline btn-sm">
-                    Validate
-                  </button>
                 </div>
 
                 <div>
@@ -198,8 +218,6 @@ const Login = () => {
                     className="btn btn-primary w-full text-white"
                     value="Login"
                   />
-
-                
                 </div>
               </div>
             </form>

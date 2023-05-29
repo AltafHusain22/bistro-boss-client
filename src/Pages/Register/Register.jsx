@@ -40,19 +40,23 @@ const Register = () => {
     } else if (password.length < 6) {
       toast("Password Mustbe 6 char!");
       return;
-    } else if (/^(?=.*\d)$/.test(password)) {
-      toast("password should contain at least 1 digit!");
-      return;
-    } else if (/^(?=(.*\W){1})$/.test(password)) {
-      toast("should contain at least 1 special characters ! ");
-      return;
-    } else if (/^(?=.*[a-zA-Z])$/.test(password)) {
-      toast("should contain at least 1 alphabetic character! ");
-      return;
-    } else if (/^ (?!.*\s) $/.test(password)) {
-      toast("should not contain any blank space! ");
-      return;
-    } else {
+    }
+    
+    // else if (/^(?=.*\d)$/.test(password)) {
+    //   toast("password should contain at least 1 digit!");
+    //   return;
+    // } else if (/^(?=(.*\W){1})$/.test(password)) {
+    //   toast("should contain at least 1 special characters ! ");
+    //   return;
+    // } else if (/^(?=.*[a-zA-Z])$/.test(password)) {
+    //   toast("should contain at least 1 alphabetic character! ");
+    //   return;
+    // } else if (/^ (?!.*\s) $/.test(password)) {
+    //   toast("should not contain any blank space! ");
+    //   return;
+    // } 
+    
+    else {
       createUser(email, password)
         .then((userCredential) => {
           const user = userCredential.user;
@@ -77,7 +81,7 @@ const Register = () => {
               src={registerImg}
             />
           </div>
-          <div className="absolute inset-0 bg-gradient-to-t from-blue-900 to-transparent"></div>
+          <div className="absolute inset-0 bg-gradient-to-t from-slate-900 to-transparent"></div>
 
           <div className="relative">
             <div className="w-full max-w-xl xl:w-full xl:mx-auto xl:pr-24 xl:max-w-xl">

@@ -1,24 +1,38 @@
 /* eslint-disable no-unused-vars */
 import React from "react";
-import { Link} from "react-router-dom";
+import { useContext } from "react";
+import { Link } from "react-router-dom";
+import { AuthContext } from "../../../context/AuthProvider";
+import Swal from "sweetalert2";
+import "sweetalert2/dist/sweetalert2.min.css";
 
 const Header = () => {
+  const { user, logOut } = useContext(AuthContext);
+  const handleLogOut =()=>{
+    logOut()
+    .then(() => {
+      Swal.fire("Good job!", "Successfully LogOut !", "success");
+    }).catch((error) => {
+      
+    });
+  }
 
   const menuItems = (
     <>
       <li>
-        <Link to={'/'}>Home</Link>
+        <Link to={"/"}>Home</Link>
       </li>
 
       <li>
-      <Link to={'/menu'}>Menu</Link>
+        <Link to={"/menu"}>Menu</Link>
       </li>
 
       <li>
-      <Link to={'/order'}>Order</Link>
+        <Link to={"/order"}>Order</Link>
       </li>
+
       <li>
-      <Link to={'/login'}>Login</Link>
+        <Link to={"/secret"}>Secret</Link>
       </li>
     </>
   );
@@ -47,17 +61,26 @@ const Header = () => {
               tabIndex={0}
               className="menu menu-compact dropdown-content mt-3 p-2 shadow bg-base-100 rounded-box w-52"
             >
-				{menuItems}
-			</ul>
+              {menuItems}
+            </ul>
           </div>
-          <a className="btn btn-ghost normal-case text-2xl font-bold">Bistro Boss</a>
+          <a className="btn btn-ghost normal-case text-2xl font-bold">
+            Bistro Boss
+          </a>
         </div>
         <div className="navbar-center hidden lg:flex">
-          <ul className="menu menu-horizontal px-1">
-				{menuItems}
-          </ul>
+          <ul className="menu menu-horizontal px-1">{menuItems}</ul>
         </div>
         <div className="navbar-end">
+          {user ? (
+            
+              <button onClick={handleLogOut} className="btn btn-outline text-white mr-5">LogOut</button>
+            
+          ) : (
+            
+              <Link to={"/login"}><button className="btn btn-outline text-white mr-5">Login</button></Link>
+            
+          )}
           <a className="btn">Get started</a>
         </div>
       </div>

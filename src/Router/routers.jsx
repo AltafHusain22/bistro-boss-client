@@ -7,32 +7,42 @@ import Menu from "../Pages/Menu/Menu";
 import OrderFood from "../Pages/OrderFood/OrderFood";
 import Login from "../Pages/Login/Login";
 import Register from "../Pages/Register/Register";
+import Secrect from "../Pages/Secret/Secrect";
+import PrivateRotes from "../PrivateRoute/PrivateRotes";
 
 export const router = createBrowserRouter([
   {
     path: "/",
     element: <Main></Main>,
-	children: [
-		{
-			path: '/',
-			element: <Home></Home>
-		},
-		{
-			path: '/menu',
-			element: <Menu></Menu>
-		},
-		{
-			path: '/order',
-			element: <OrderFood></OrderFood>
-		},
-		{
-			path: '/login',
-			element: <Login></Login>
-		},
-		{
-			path: '/register',
-			element: <Register></Register>
-		},
-	]
+    children: [
+      {
+        path: "/",
+        element: <Home></Home>,
+      },
+      {
+        path: "/menu",
+        element: <Menu></Menu>,
+      },
+      {
+        path: "/order",
+        element: <OrderFood></OrderFood>,
+      },
+      {
+        path: "/login",
+        element: <Login></Login>,
+      },
+      {
+        path: "/register",
+        element: <Register></Register>,
+      },
+      {
+        path: "/secret",
+        element: (
+          <PrivateRotes>
+            <Secrect></Secrect>
+          </PrivateRotes>
+        ),
+      },
+    ],
   },
 ]);
