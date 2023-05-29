@@ -1,9 +1,11 @@
 /* eslint-disable react/prop-types */
 
+
 const MenuCategoryCard = ({ items }) => {
   const { name, recipe, image, price } = items;
 
   return (
+<>
     <div className="flex gap-10 mb-5 md:mr-20 ">
       <img
         className="md:w-28 w-20 h-20 object-cover"
@@ -16,6 +18,7 @@ const MenuCategoryCard = ({ items }) => {
       </div>
       <p className="text-end text-[#D99904]">${price}</p>
     </div>
+</>
   );
 };
 

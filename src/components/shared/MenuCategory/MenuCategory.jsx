@@ -2,7 +2,7 @@
 import { Link } from "react-router-dom";
 import MenuCategoryCard from "./MenuCategoryCard";
 
-const MenuCategory = ({items}) => {
+const MenuCategory = ({ items }) => {
   return (
     <>
       <div className="grid md:grid-cols-2 gap-5 my-10 mx-5">
