@@ -1,58 +1,27 @@
 /* eslint-disable no-const-assign */
 /* eslint-disable no-unused-vars */
 /* eslint-disable react/no-unknown-property */
-import "./Login.css";
+import "./Register.css";
 import { Link } from "react-router-dom";
 import Swal from "sweetalert2";
 import "sweetalert2/dist/sweetalert2.min.css";
-import {
-  loadCaptchaEnginge,
-  LoadCanvasTemplate,
-  validateCaptcha,
-} from "react-simple-captcha";
 import { useEffect, useRef, useState } from "react";
 import { ImFacebook } from "react-icons/im";
 import { FcGoogle } from "react-icons/fc";
 import { BiFingerprint } from "react-icons/bi";
 import { MdAlternateEmail } from "react-icons/md";
 import { BsCheck } from "react-icons/bs";
+import { AiOutlineUserAdd } from "react-icons/ai";
 
-const Login = () => {
-
-  const [disabled , setDisabled] = useState(true)
-
-  // handle captcha
-  useEffect(() => {
-    loadCaptchaEnginge(6);
-  }, []);
-  
-  const ref = useRef()
-  const handleValidateCaptcha =()=>{
-      let user_captcha_value = ref.current.value 
-      if(validateCaptcha(user_captcha_value)){
-        setDisabled(false)
-        
-      }else{
-       
-        Swal.fire({
-          icon: 'error',
-          title: 'Oops...',
-          text: "Captcha Doesn't Matched!",
-        })
-          
-      }
-      
-  }
-
+const Register = () => {
   // handlegoogle signUp
   const handleGoogleSignUp = () => {};
 
-  const handleLogin = (event) => {
+  const handleRegister = (event) => {
     event.preventDefault();
     const form = event.target;
     const email = form.email.value;
     const password = form.password.value;
-    
   };
 
   return (
@@ -116,20 +85,38 @@ const Login = () => {
             {/* {error} */}
             {/* <ToastContainer /> */}
             <h2 className="text-3xl font-bold leading-tight text-black sm:text-4xl">
-              Sign in to Celebration
+              Sign UP to Celebration
             </h2>
             <p className="mt-2 text-base text-gray-600">
-              Don’t have an account?
+              Already have an account?
               <Link
-                to={"/register"}
+                to={"/login"}
                 className="font-medium text-blue-600 transition-all duration-200 hover:text-blue-700 focus:text-blue-700 hover:underline"
               >
-                Create a free account
+                Login
               </Link>
             </p>
 
-            <form onSubmit={handleLogin} className="mt-8">
+            <form onSubmit={handleRegister} className="mt-8">
               <div className="space-y-5">
+				{/* name field */}
+                <div>
+                  <label className="text-base font-medium text-gray-900">
+                    First & Last Name 
+                  </label>
+                  <div className="mt-2.5 relative text-gray-400 focus-within:text-gray-600">
+                    <div className="email-field-wrap">
+                      <AiOutlineUserAdd></AiOutlineUserAdd>
+                    </div>
+                    <input
+                      type="text"
+                      name="name"
+                      placeholder="Enter Your name "
+                      className="name-input-field"
+                    />
+                  </div>
+                </div>
+				{/* email field */}
                 <div>
                   <label className="text-base font-medium text-gray-900">
                     Email address
@@ -146,7 +133,7 @@ const Login = () => {
                     />
                   </div>
                 </div>
-                {/* password */}
+                {/* password field*/}
                 <div>
                   <div className="flex items-center justify-between">
                     <label className="text-base font-medium text-gray-900">
@@ -170,36 +157,13 @@ const Login = () => {
                     />
                   </div>
                 </div>
-                {/* captcha field */}
-                <div>
-                  <div className="flex items-center justify-between">
-                    <label className="text-base font-medium text-gray-900">
-                      <LoadCanvasTemplate />
-                    </label>
-                  </div>
-                  <div className="captcha-wrap">
-                    <input
-                      ref={ref}
-                      type="text"
-                      name="captcha"
-                      placeholder="Enter above captcha"
-                      className="captcha-input-field"
-                    />
-                  </div>
-                  <button onClick={handleValidateCaptcha} className=" mt-5 w-full btn btn-outline btn-sm">
-                    Validate
-                  </button>
-                </div>
 
                 <div>
                   <input
-                    disabled={disabled}
                     type="submit"
                     className="btn btn-primary w-full text-white"
-                    value="Login"
+                    value="Sign Up"
                   />
-
-                
                 </div>
               </div>
             </form>
@@ -230,4 +194,4 @@ const Login = () => {
   );
 };
 
-export default Login;
+export default Register;

@@ -7,16 +7,16 @@ import Footer from "../components/shared/Footer/Footer";
 
 const Main = () => {
   const location = useLocation()
-  const isLogin = location.pathname.includes('login')
-  const isRegister = location.pathname.includes('register')
+ 
+  const noHeaderFooter = location.pathname.includes('register') || location.pathname.includes('login')
   return (
     <div>
-      { isLogin ||
+      { noHeaderFooter ||
         <Header></Header>
       }
        <Outlet></Outlet>
       {
-      isLogin || <Footer></Footer>
+      noHeaderFooter || <Footer></Footer>
       }
     </div>
   );
