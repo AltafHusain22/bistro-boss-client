@@ -3,7 +3,7 @@
 /* eslint-disable react/no-unknown-property */
 import registerImg from "../../../public/Assets/others/authentication.gif";
 import "./Register.css";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import Swal from "sweetalert2";
 import "sweetalert2/dist/sweetalert2.min.css";
 import { useEffect, useRef, useState } from "react";
@@ -12,6 +12,7 @@ import { FcGoogle } from "react-icons/fc";
 import { BiFingerprint } from "react-icons/bi";
 import { MdAlternateEmail } from "react-icons/md";
 import { BsCheck } from "react-icons/bs";
+import { BiPhotoAlbum } from "react-icons/bi";
 import { AiOutlineUserAdd } from "react-icons/ai";
 import { useContext } from "react";
 import { AuthContext } from "../../context/AuthProvider";
@@ -19,7 +20,8 @@ import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
 const Register = () => {
-  const { createUser } = useContext(AuthContext);
+  const { createUser ,updateUserProfile } = useContext(AuthContext);
+  const navigate = useNavigate()
 
   // handlegoogle signUp
   const handleGoogleSignUp = () => {};
@@ -31,6 +33,7 @@ const Register = () => {
     const name = form.name.value;
     const email = form.email.value;
     const password = form.password.value;
+    const photo = form.photo.value 
 
     // form validation
 
@@ -58,10 +61,13 @@ const Register = () => {
     
     else {
       createUser(email, password)
-        .then((userCredential) => {
+      .then((userCredential) => {
           const user = userCredential.user;
+          updateUserProfile(name, photo)
           Swal.fire("Good job!", "User Created Successfully!", "success");
           form.reset();
+          navigate('/')
+          
         })
         .catch((error) => {
           const errorCode = error.code;
@@ -176,6 +182,23 @@ const Register = () => {
                       type="email"
                       name="email"
                       placeholder="Enter email to get started"
+                      className="email-input-field"
+                    />
+                  </div>
+                </div>
+                {/* Photo url */}
+                <div>
+                  <label className="text-base font-medium text-gray-900">
+                    Photo URL
+                  </label>
+                  <div className="mt-2.5 relative text-gray-400 focus-within:text-gray-600">
+                    <div className="photo-field-wrap">
+                      <BiPhotoAlbum></BiPhotoAlbum>
+                    </div>
+                    <input
+                      type="text"
+                      name="photo"
+                      placeholder="Enter photo Url"
                       className="email-input-field"
                     />
                   </div>

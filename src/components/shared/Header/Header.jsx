@@ -5,17 +5,20 @@ import { Link } from "react-router-dom";
 import { AuthContext } from "../../../context/AuthProvider";
 import Swal from "sweetalert2";
 import "sweetalert2/dist/sweetalert2.min.css";
+import { FiShoppingCart } from 'react-icons/fi';
+import useCart from "../../../hooks/useCart";
 
 const Header = () => {
   const { user, logOut } = useContext(AuthContext);
-  const handleLogOut =()=>{
+  const [cart] = useCart()
+
+  const handleLogOut = () => {
     logOut()
-    .then(() => {
-      Swal.fire("Good job!", "Successfully LogOut !", "success");
-    }).catch((error) => {
-      
-    });
-  }
+      .then(() => {
+        Swal.fire("Good job!", "Successfully LogOut !", "success");
+      })
+      .catch((error) => {});
+  };
 
   const menuItems = (
     <>
@@ -73,13 +76,25 @@ const Header = () => {
         </div>
         <div className="navbar-end">
           {user ? (
-            
-              <button onClick={handleLogOut} className="btn btn-outline text-white mr-5">LogOut</button>
-            
+            <>
+              {/* <p>{user.displayName}</p> */}
+              <Link to={"/"}>
+                <button className="btn gap-2 mr-4 bg-transparent text-white ">
+                <FiShoppingCart></FiShoppingCart>
+                  <div className=" bg-transparent ">+ {cart.length? cart.length : 0}</div>
+                </button>
+              </Link>
+              <button
+                onClick={handleLogOut}
+                className="btn btn-outline text-white mr-5"
+              >
+                LogOut
+              </button>
+            </>
           ) : (
-            
-              <Link to={"/login"}><button className="btn btn-outline text-white mr-5">Login</button></Link>
-            
+            <Link to={"/login"}>
+              <button className="btn btn-outline text-white mr-5">Login</button>
+            </Link>
           )}
           <a className="btn">Get started</a>
         </div>

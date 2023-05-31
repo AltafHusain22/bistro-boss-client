@@ -2,7 +2,7 @@
 /* eslint-disable no-unused-vars */
 /* eslint-disable react/no-unknown-property */
 import "./Login.css";
-import { Link, useNavigate } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import Swal from "sweetalert2";
 import "sweetalert2/dist/sweetalert2.min.css";
 import {
@@ -21,15 +21,16 @@ import { AuthContext } from "../../context/AuthProvider";
 import { ToastContainer, toast } from "react-toastify";
 
 const Login = () => {
+  // handle captcha
   const [disabled, setDisabled] = useState(true);
   const { loginUser, user } = useContext(AuthContext);
-  const navigate = useNavigate()
-
-  // handle captcha
+  const navigate = useNavigate();
+  const location = useLocation();
+  const from = location.state?.from?.pathname || "/"
+  
   useEffect(() => {
     loadCaptchaEnginge(6);
   }, []);
-
   const ref = useRef();
   const handleValidateCaptcha = () => {
     let user_captcha_value = ref.current.value;
@@ -57,17 +58,13 @@ const Login = () => {
     if (email === "" || password === "") {
       toast("Field Must Not Be Empty!");
       return;
-    } else if (user?.email !== email) {
-      toast("Please provide a valid email address and password !");
-      return;
     } else {
       loginUser(email, password)
         .then((userCredential) => {
           const user = userCredential.user;
-          console.log(user)
           Swal.fire("Good job!", "LogIn Successfully!", "success");
           form.reset()
-          navigate('/')
+          navigate(from)
           
         })
         .catch((error) => {
@@ -213,7 +210,8 @@ const Login = () => {
 
                 <div>
                   <input
-                    disabled={disabled}
+                  //  TODO: have to be enable for captcha
+                    // disabled={disabled} 
                     type="submit"
                     className="btn btn-primary w-full text-white"
                     value="Login"
