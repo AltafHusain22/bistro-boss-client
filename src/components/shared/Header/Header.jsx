@@ -37,6 +37,7 @@ const Header = () => {
       <li>
         <Link to={"/secret"}>Secret</Link>
       </li>
+  
     </>
   );
   return (
@@ -78,7 +79,7 @@ const Header = () => {
           {user ? (
             <>
               {/* <p>{user.displayName}</p> */}
-              <Link to={"/"}>
+              <Link to={"/dashboard/myCart"}>
                 <button className="btn gap-2 mr-4 bg-transparent text-white ">
                 <FiShoppingCart></FiShoppingCart>
                   <div className=" bg-transparent ">+ {cart.length? cart.length : 0}</div>
