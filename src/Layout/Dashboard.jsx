@@ -2,12 +2,15 @@ import { Link, Outlet } from "react-router-dom";
 import { FaHome } from 'react-icons/fa';
 import { VscAccount } from 'react-icons/vsc';
 import { FiLogOut } from 'react-icons/fi';
+import { GiCalendar, GiPayMoney, GiShoppingCart } from 'react-icons/gi';
 
 
 const Dashboard = () => {
+
+  
   return (
 <div className="flex">
- <div className="flex h-screen flex-col justify-between border-e bg-white w-2/12 mr-10">
+ <div className="flex h-screen flex-col justify-between border-e bg-white md:w-2/12 mr-10 sm:w-2/3">
   <div className="px-4 py-6">
     <nav aria-label="Main Nav" className="mt-6 flex flex-col space-y-1">
       {/* user logOut */}
@@ -57,6 +60,27 @@ const Dashboard = () => {
       >
         <FaHome className="text-2xl"></FaHome>
         <span className="font-medium">User Home</span>
+      </Link>
+      <Link
+        to={'/dashboard/myCart'}
+        className="flex items-center gap-2 rounded-lg px-4 py-2 text-gray-500 hover:bg-gray-100 hover:text-gray-700"
+      >
+        <GiShoppingCart className="text-2xl"></GiShoppingCart>
+        <span className="font-medium">My Cart</span>
+      </Link>
+      <Link
+        to={'/dashboard/reservation'}
+        className="flex items-center gap-2 rounded-lg px-4 py-2 text-gray-500 hover:bg-gray-100 hover:text-gray-700"
+      >
+        <GiCalendar className="text-2xl"></GiCalendar>
+        <span className="font-medium">My Reservation</span>
+      </Link>
+      <Link
+        to={'/dashboard/paymentHistory'}
+        className="flex items-center gap-2 rounded-lg px-4 py-2 text-gray-500 hover:bg-gray-100 hover:text-gray-700"
+      >
+        <GiPayMoney className="text-2xl"></GiPayMoney>
+        <span className="font-medium">Payment History</span>
       </Link>
     </nav>
   </div>

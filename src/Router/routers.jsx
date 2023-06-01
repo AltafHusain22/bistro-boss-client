@@ -11,6 +11,8 @@ import Secrect from "../Pages/Secret/Secrect";
 import PrivateRotes from "../PrivateRoute/PrivateRotes";
 import Dashboard from "../Layout/Dashboard";
 import MyCart from "../Pages/Dashboard/Mycart/MyCart";
+import PaymentHistory from "../Pages/Dashboard/PaymentHistory/PaymentHistory";
+import Reservation from "../Pages/Dashboard/Reservation/Reservation";
 
 export const router = createBrowserRouter([
   {
@@ -54,6 +56,14 @@ export const router = createBrowserRouter([
       {
         path: "myCart",
         element: <MyCart></MyCart>
+      },
+      {
+        path: "paymentHistory",
+        element: <PaymentHistory></PaymentHistory>
+      },
+      {
+        path: "reservation",
+        element: <Reservation></Reservation>
       },
    
     ],
