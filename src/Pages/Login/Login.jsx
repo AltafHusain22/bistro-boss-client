@@ -11,14 +11,13 @@ import {
   validateCaptcha,
 } from "react-simple-captcha";
 import { useEffect, useRef, useState } from "react";
-import { ImFacebook } from "react-icons/im";
-import { FcGoogle } from "react-icons/fc";
 import { BiFingerprint } from "react-icons/bi";
 import { MdAlternateEmail } from "react-icons/md";
 import { BsCheck } from "react-icons/bs";
 import { useContext } from "react";
 import { AuthContext } from "../../context/AuthProvider";
 import { ToastContainer, toast } from "react-toastify";
+import SocialLogin from "../../components/shared/SocialLogin/SocialLogin";
 
 const Login = () => {
   // handle captcha
@@ -44,9 +43,6 @@ const Login = () => {
       });
     }
   };
-
-  // handlegoogle signUp
-  const handleGoogleSignUp = () => {};
 
   const handleLogin = (event) => {
    
@@ -219,26 +215,9 @@ const Login = () => {
                 </div>
               </div>
             </form>
-
-            <div className="mt-3 space-y-3">
-              <button
-                onClick={handleGoogleSignUp}
-                type="button"
-                className="sign-with-google-btn"
-              >
-                <div className="absolute inset-y-0 left-0 p-4">
-                  <FcGoogle></FcGoogle>
-                </div>
-                Sign in with Google
-              </button>
-
-              <button type="button" className="sign-with-fb-btn">
-                <div className="absolute inset-y-0 left-0 p-4">
-                  <ImFacebook className="text-blue-800"></ImFacebook>
-                </div>
-                Sign in with Facebook
-              </button>
-            </div>
+            {/* social login */}
+            <SocialLogin></SocialLogin>
+   
           </div>
         </div>
       </div>

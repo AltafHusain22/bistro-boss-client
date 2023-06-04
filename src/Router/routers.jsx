@@ -13,6 +13,10 @@ import Dashboard from "../Layout/Dashboard";
 import MyCart from "../Pages/Dashboard/Mycart/MyCart";
 import PaymentHistory from "../Pages/Dashboard/PaymentHistory/PaymentHistory";
 import Reservation from "../Pages/Dashboard/Reservation/Reservation";
+import Allusers from "../components/AllUsers/Allusers";
+import AddItems from "../components/AddItems/AddItems";
+import ManageItems from "../components/ManageItems/ManageItems";
+
 
 export const router = createBrowserRouter([
   {
@@ -51,7 +55,7 @@ export const router = createBrowserRouter([
   },
   {
     path: "/dashboard",
-    element: <Dashboard></Dashboard>,
+    element: <PrivateRotes><Dashboard></Dashboard></PrivateRotes>,
     children: [
       {
         path: "myCart",
@@ -64,6 +68,21 @@ export const router = createBrowserRouter([
       {
         path: "reservation",
         element: <Reservation></Reservation>
+      },
+      {
+        path: "allusers",
+        element: <Allusers></Allusers>
+    
+      },
+
+     
+      {
+        path: "additems",
+        element:<AddItems></AddItems>
+      },
+      {
+        path: "update",
+        element:<ManageItems></ManageItems>
       },
    
     ],
