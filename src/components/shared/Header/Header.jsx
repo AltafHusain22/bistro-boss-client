@@ -10,7 +10,8 @@ import useCart from "../../../hooks/useCart";
 
 const Header = () => {
   const { user, logOut } = useContext(AuthContext);
-  const [cart] = useCart()
+  const [refetch, cart] = useCart()
+ 
 
   const handleLogOut = () => {
     logOut()
@@ -37,7 +38,8 @@ const Header = () => {
       <li>
         <Link to={"/secret"}>Secret</Link>
       </li>
-  
+     
+    
     </>
   );
   return (
@@ -78,7 +80,7 @@ const Header = () => {
         <div className="navbar-end">
           {user ? (
             <>
-              {/* <p>{user.displayName}</p> */}
+              <p>{user.displayName}</p>
               <Link to={"/dashboard/myCart"}>
                 <button className="btn gap-2 mr-4 bg-transparent text-white ">
                 <FiShoppingCart></FiShoppingCart>
@@ -97,6 +99,9 @@ const Header = () => {
               <button className="btn btn-outline text-white mr-5">Login</button>
             </Link>
           )}
+           
+    
+    
           <a className="btn">Get started</a>
         </div>
       </div>

@@ -27,7 +27,8 @@ const SocialLogin = () => {
           .then((res) => res.json())
           .then(() => {
             Swal.fire("Good job!", "User Created Successfully!", "success");
-            navigate(from, { replace: true });
+            // navigate(from, { replace: true });
+            navigate('/')
           });
       })
       .catch((error) => {

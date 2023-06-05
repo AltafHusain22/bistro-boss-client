@@ -6,7 +6,6 @@ import "./Register.css";
 import { Link, useNavigate } from "react-router-dom";
 import Swal from "sweetalert2";
 import "sweetalert2/dist/sweetalert2.min.css";
-import { useEffect, useRef, useState } from "react";
 import { BiFingerprint } from "react-icons/bi";
 import { MdAlternateEmail } from "react-icons/md";
 import { BsCheck } from "react-icons/bs";

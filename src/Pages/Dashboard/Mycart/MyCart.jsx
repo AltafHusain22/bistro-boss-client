@@ -3,7 +3,8 @@ import Swal from "sweetalert2";
 import useCart from "../../../hooks/useCart";
 import { BsFillTrashFill} from 'react-icons/bs';
 const MyCart = () => {
-	const [cart, refetch] = useCart()
+	const [ refetch,cart] = useCart()
+
   const handleDelete = item =>{
     Swal.fire({
       title: 'Are you sure?',
