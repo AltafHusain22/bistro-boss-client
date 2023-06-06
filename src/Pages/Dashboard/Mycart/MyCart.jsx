@@ -2,6 +2,7 @@
 import Swal from "sweetalert2";
 import useCart from "../../../hooks/useCart";
 import { BsFillTrashFill} from 'react-icons/bs';
+import { Link } from "react-router-dom";
 const MyCart = () => {
 	const [ refetch,cart] = useCart()
 
@@ -35,9 +36,16 @@ const MyCart = () => {
     })
   }
 
+  const total = cart.reduce((sum, item) => item.price + sum, 0);
+
+
 	return (
 		<div>
-			<h2 className="text-xl text-center"> Total Items : {cart.length}</h2>
+			<div className="flex justify-between items-center">
+      <h2 className="text-xl text-center"> Total Items : {cart.length}</h2>
+      <h2 className="text-xl text-center"> Total Price : ${total}</h2>
+      <Link to={'/dashboard/checkOut'}><button className="btn btn-primary mb-3">Pay Now</button></Link>
+      </div>
 
 	<div className=" ">
   <table className="table">

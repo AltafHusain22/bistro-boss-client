@@ -36,7 +36,23 @@ const AllUsers = () => {
     }
 
     const handleDelete = user => {
-
+        fetch(`http://localhost:5000/users/${user._id}`, {
+            method: 'DELETE'
+        })
+        .then(res => res.json())
+        .then(data => {
+            console.log(data)
+            if(data.deletedCount){
+                refetch();
+                Swal.fire({
+                    position: 'top-end',
+                    icon: 'success',
+                    title: `${user.name} is Deleted Now!`,
+                    showConfirmButton: false,
+                    timer: 1500
+                  })
+            }
+        })
     }
 
     return (

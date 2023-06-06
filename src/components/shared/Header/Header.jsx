@@ -12,7 +12,7 @@ const Header = () => {
   const { user, logOut } = useContext(AuthContext);
   const [refetch, cart] = useCart()
  
-
+  refetch()
   const handleLogOut = () => {
     logOut()
       .then(() => {
@@ -36,7 +36,7 @@ const Header = () => {
       </li>
 
       <li>
-        <Link to={"/secret"}>Secret</Link>
+        <Link to={"/dashboard"}>Dashboard</Link>
       </li>
      
     
